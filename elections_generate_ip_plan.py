@@ -22,13 +22,14 @@ main_prefix = 16
 net_prefix = 28
 number_of_nets = 183
 
-prefix_diff = main_prefix-(32-net_prefix)    # we need /28 nets
+prefix_diff = main_prefix-(32-net_prefix)
 all_nets = list(ipaddress.ip_network(f'{main_net}/{main_prefix}').subnets(prefixlen_diff=prefix_diff))
 
 for i,net in enumerate(all_nets):
     n = ipaddress.ip_network(net)
     hosts = list(n.hosts())
-    print(f'{hosts[3]};{hosts[4]};{n.network_address};{n.netmask};{hosts[0]}')
+    print(f'{hosts[2]};{hosts[3]};{n.network_address};{n.netmask};{hosts[0]}')
+
     if i == number_of_nets-1:
         break
 print(f'Generated {i+1} subnets')
